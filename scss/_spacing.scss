@@ -1,0 +1,108 @@
+// margin and padding side spacing
+@mixin spacing-side($side-symbol, $n,$side,$space-type){
+    // arguments
+    // $side-symbol : l for left,r for right,t for top,b for bottom
+    // $n :n for nrem eg 1 for 1rem
+    // $side : right,left,top,bottom
+    // space-type : margin,padding
+    &#{$side-symbol}{
+        &-#{$n}{
+            #{$space-type}: {
+                #{$side}: 0.5rem * $n !important;
+            }
+        }
+    }
+}
+
+
+// margin and padding axis spacing
+@mixin spacing-axis($n,$axis,$space-type){
+    // arguments
+    // $side-symbol : l for left,r for right,t for top,b for bottom
+    // $n :n for nrem eg 1 for 1rem
+    // $spacing type : margin , padding
+    // $axis : y for margin top and bottom,x for spacing left and right
+
+    @if $axis == x {
+        // for x axis
+        &#{$axis}{
+            &-#{$n}{
+                #{$space-type}: {
+                    left: 0.5rem * $n !important;
+                    right: 0.5rem * $n !important;
+                }
+            }
+        }
+    }
+
+    @if $axis == y {
+        // for y axis
+        &#{$axis}{
+            &-#{$n}{
+                #{$space-type}: {
+                    top: 0.5rem * $n  !important;
+                    bottom: 0.5rem * $n !important;
+                }
+            }
+        }
+    }
+
+    
+}
+
+
+
+
+
+@for $i from -10 through 20 {
+    .p{
+        // output
+        // .pl-1 {padding-left: 1rem;}
+        @include spacing-axis($i, x, padding);
+        @include spacing-axis($i, y, padding);
+        @include spacing-side(l, $i, left,padding);
+        @include spacing-side(t, $i, top,padding);
+        @include spacing-side(r, $i, right,padding);
+        @include spacing-side(b, $i, bottom,padding);
+    }
+    // margins
+    .m{
+        // output 
+        // .ml-1 {margin-left: 1rem;}
+        @include spacing-axis($i, x, margin);
+        @include spacing-axis($i, y, margin);
+        @include spacing-side(l, $i, left,margin);
+        @include spacing-side(t, $i, top,margin);
+        @include spacing-side(r, $i, right,margin);
+        @include spacing-side(b, $i, bottom,margin);
+    }
+}
+
+.w{
+    &-100{
+    width:100% !important;
+    }
+    &-75{
+    width:75% !important;
+    }
+    &-50{
+    width:50% !important;
+    }
+    &-25{
+    width:25% !important;
+    }
+}
+.h{
+    &-100{
+        height: 100% !important;
+    }
+    &-75{
+        height: 75% !important;
+    }
+    &-50{
+        height: 50% !important;
+    }
+    &-25{
+        height: 25% !important;
+    }
+}

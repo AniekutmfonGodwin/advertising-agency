@@ -1,0 +1,49 @@
+
+
+
+@mixin font-type($n,$type,$symbol) {
+
+    @if $type==weight {
+        &-#{$symbol}#{$n}{
+            font: {
+                #{$type}:#{$n} !important;
+            }
+        }
+    }
+    @if $type==size {
+        &-#{$symbol}#{$n}{
+            font: {
+                #{$type}:#{$n}rem !important;
+            }
+        }
+    }
+    
+}
+
+.font{
+    
+    
+    @each $n in (100,200,300,400,500,600,700,800,900,1000) {
+        @include font-type($n, weight, w)
+    }
+
+    @for $n from -10 to 10 {
+        @include font-type($n, size, s)
+    }
+}
+
+
+// text transform
+.text{
+    &-transform{
+        &-uppercase{
+            text-transform: uppercase !important;
+        }
+        &-lowercase{
+            text-transform: lowercase !important;
+        }
+        &-capitalize{
+            text-transform: capitalize !important;
+        }
+    }
+}
